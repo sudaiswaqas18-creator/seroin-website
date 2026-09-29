@@ -316,41 +316,59 @@ nav.main-nav a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   5. HERO SECTION
+   5. HERO SECTION (Exact Image 1 Replica)
    -------------------------------------------------------------------------- */
 .hero {
     position: relative;
-    padding: 5rem 0 6rem 0;
+    padding: 5rem 0 5.5rem 0;
     overflow: hidden;
     background: var(--bg-dark);
 }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    gap: 3rem;
+.hero-layout {
+    display: flex;
     align-items: center;
+    padding-left: max(2rem, calc((100vw - 1320px) / 2 + 2rem));
+    padding-right: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .hero-content {
-    max-width: 580px;
+    flex: 0 0 560px;
+    max-width: 560px;
+    position: relative;
+    z-index: 10;
+    padding-right: 0.5rem;
+}
+
+.hero-content .sec-subtitle {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1.15rem;
 }
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 4.5vw, 3.85rem);
+    font-size: clamp(3.2rem, 5.2vw, 4.65rem);
     font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    line-height: 0.96;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
     color: var(--text-white);
-    margin: 0.85rem 0 1.25rem 0;
+    margin: 0 0 1.5rem 0;
 }
 
 .hero-content p {
-    font-size: 1.125rem;
-    line-height: 1.65;
-    color: var(--text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: #c4c4c4;
+    max-width: 520px;
     margin-bottom: 2.25rem;
 }
 
@@ -361,31 +379,83 @@ nav.main-nav a:hover {
     flex-wrap: wrap;
 }
 
+/* Exact Image 1 button typography & styling */
+.btn-hero-primary {
+    background: var(--primary-color);
+    color: #000000 !important;
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 13px 32px;
+    border-radius: 9999px;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-hero-primary:hover {
+    background: #e4ff33;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(213, 255, 2, 0.4);
+}
+
+.btn-hero-secondary {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: #ffffff !important;
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 13px 32px;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-hero-secondary:hover {
+    background: rgba(213, 255, 2, 0.12);
+    border-color: #e4ff33;
+    transform: translateY(-2px);
+}
+
+/* Hero Cards Marquee - NO black cut on right, extends seamlessly off the page */
 .hero-carousel-wrap {
+    flex: 1 1 auto;
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
+    margin-left: -48px; /* Letters overlap over first card as seen in Image 1 */
 }
 
-/* Gradient left fade like live site */
+/* Subtle left fade allowing cards to peek behind the headline */
 .hero-carousel-wrap::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 160px;
-    background: linear-gradient(to right, var(--bg-dark) 0%, rgba(11, 12, 11, 0.7) 60%, transparent 100%);
-    z-index: 10;
+    width: 110px;
+    background: linear-gradient(to right, rgba(11, 12, 11, 0.95) 0%, rgba(11, 12, 11, 0.35) 60%, transparent 100%);
+    z-index: 5;
     pointer-events: none;
 }
 
 .hero-marquee {
     display: flex;
-    gap: 21px;
+    gap: 22px;
     width: max-content;
-    animation: heroMarquee 57s linear infinite;
+    animation: heroMarquee 55s linear infinite;
 }
 
 .hero-marquee:hover {
@@ -396,10 +466,10 @@ nav.main-nav a:hover {
     flex-shrink: 0;
     width: 340px;
     height: 460px;
-    border-radius: var(--radius-md);
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -411,6 +481,7 @@ nav.main-nav a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 @keyframes heroMarquee {
@@ -1072,12 +1143,38 @@ nav.main-nav a:hover {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .command-card:hover {
     transform: translateY(-4px);
-    border-color: var(--border-dark-hover);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* Glowing left-border indicator gliding bottom-to-top on hover */
+.command-card::before,
+.command-wide-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    width: 5px;
+    height: 52px;
+    background: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 14px rgba(213, 255, 2, 0.85), 2px 0 8px rgba(213, 255, 2, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    transition: bottom 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.command-card:hover::before,
+.command-wide-card:hover::before {
+    bottom: calc(100% - 68px);
+    opacity: 1;
 }
 
 .command-card-img {
@@ -1124,11 +1221,15 @@ nav.main-nav a:hover {
     grid-template-columns: 1.1fr 1fr;
     gap: 3rem;
     align-items: center;
-    transition: border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .command-wide-card:hover {
-    border-color: var(--border-dark-hover);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
 }
 
 .command-wide-text h4 {
