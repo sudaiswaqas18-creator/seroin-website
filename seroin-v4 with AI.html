@@ -992,11 +992,63 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Card 11: The Vegan Shop 2 -->
+            <div class="case-study-card">
+                <div class="cs-image-box">
+                    <img src="images/The_Vegan_Shop_e17d781324.avif" alt="The Vegan Shop Case Study">
+                </div>
+                <div class="cs-content-box">
+                    <div class="cs-stats-list">
+                        <div class="cs-stat-item">
+                            <div class="cs-stat-num">3.5X</div>
+                            <div class="cs-stat-label">Faster go-to-market speed</div>
+                        </div>
+                        <div class="cs-stat-item">
+                            <div class="cs-stat-num">120+</div>
+                            <div class="cs-stat-label">Packaging & digital assets created</div>
+                        </div>
+                        <div class="cs-stat-item">
+                            <div class="cs-stat-num">40%</div>
+                            <div class="cs-stat-label">Production cost reduction</div>
+                        </div>
+                    </div>
+                    <div class="cs-footer">
+                        <a href="#recommend" class="btn">Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12: American Vox Pop 2 -->
+            <div class="case-study-card">
+                <div class="cs-image-box">
+                    <img src="images/American_Vox_Pop_da58840c7c.avif" alt="American Vox Pop Case Study">
+                </div>
+                <div class="cs-content-box">
+                    <div class="cs-stats-list">
+                        <div class="cs-stat-item">
+                            <div class="cs-stat-num">97+</div>
+                            <div class="cs-stat-label">Creative requests completed</div>
+                        </div>
+                        <div class="cs-stat-item">
+                            <div class="cs-stat-num">80</div>
+                            <div class="cs-stat-label">Hours saved every month across web, branding, and ad campaigns</div>
+                        </div>
+                        <div class="cs-stat-item">
+                            <div class="cs-stat-num">66%</div>
+                            <div class="cs-stat-label">Saved versus traditional agency costs</div>
+                        </div>
+                    </div>
+                    <div class="cs-footer">
+                        <a href="#recommend" class="btn">Read more</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="c">
-        <!-- Slider Dots - 10 Dots matching Image 1 -->
+        <!-- Slider Dots - 12 circular dots matching Image 1 -->
         <div class="slider-dots" id="caseDots">
             <span class="slider-dot" onclick="goToCase(0)"></span>
             <span class="slider-dot active" onclick="goToCase(1)"></span>
@@ -1008,6 +1060,8 @@
             <span class="slider-dot" onclick="goToCase(7)"></span>
             <span class="slider-dot" onclick="goToCase(8)"></span>
             <span class="slider-dot" onclick="goToCase(9)"></span>
+            <span class="slider-dot" onclick="goToCase(10)"></span>
+            <span class="slider-dot" onclick="goToCase(11)"></span>
         </div>
 
         <!-- Have questions? Banner (Exact Image 5 Layout) -->
@@ -1372,10 +1426,10 @@
     /* ------------------------------------------------------------------------
        2. CASE STUDIES SLIDER (Helping Since Day One - Exact Image 1 Match)
        ------------------------------------------------------------------------ */
-    let currentCaseIdx = 1; // Start on index 1 so Card 0 (American Vox Pop) peeks on the left
+    let currentCaseIdx = 1; // Start on index 1 so Card 0 peeks on the left
     const caseTrack = document.getElementById('caseTrack');
     const caseDots = document.querySelectorAll('#caseDots .slider-dot');
-    const totalCases = 10;
+    const totalCases = 12;
     let caseAutoTimer;
 
     function goToCase(idx) {
@@ -1383,17 +1437,17 @@
         if (!caseTrack || !caseTrack.children.length) return;
         const card = caseTrack.children[0];
         const cardWidth = card.offsetWidth;
-        const gap = 22;
+        const gap = 52;
         
         const vw = window.innerWidth;
-        let peekOffset = 130;
+        let peekOffset = 120;
         if (vw < 768) {
             peekOffset = 16;
         } else if (vw < 1200) {
-            peekOffset = 50;
+            peekOffset = 40;
         } else {
-            // Generates the exact look in Image 1: Card 0 peeking on left, Card 1, 2, 3 in view
-            peekOffset = Math.max(80, Math.floor((vw - (3 * cardWidth + 2 * gap)) / 2));
+            // Centers prominent card with left card peek matching Image 1
+            peekOffset = Math.max(70, Math.floor((vw - (2 * cardWidth + gap)) / 2));
         }
         
         const shiftX = -(currentCaseIdx * (cardWidth + gap)) + peekOffset;
