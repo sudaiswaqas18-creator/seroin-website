@@ -692,12 +692,39 @@ nav.main-nav a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .rm-talent-card:hover {
     transform: translateY(-4px);
-    border-color: var(--border-dark-hover);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* Small neon lime indicator on left border that glides from bottom to top on hover */
+.rm-talent-card::before,
+.rm-feature-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -60px;
+    width: 5px;
+    height: 52px;
+    background: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 14px rgba(213, 255, 2, 0.85), 2px 0 8px rgba(213, 255, 2, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    transition: bottom 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.rm-talent-card:hover::before,
+.rm-feature-card:hover::before {
+    bottom: calc(100% - 68px);
+    opacity: 1;
 }
 
 .rm-talent-image {
@@ -747,12 +774,15 @@ nav.main-nav a:hover {
     flex-direction: column;
     justify-content: flex-start;
     gap: 1rem;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .rm-feature-card:hover {
     transform: translateY(-4px);
-    border-color: var(--border-dark-hover);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
 }
 
 .rm-feature-icon {
@@ -761,7 +791,13 @@ nav.main-nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #ffffff;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.rm-feature-card:hover .rm-feature-icon {
     color: var(--primary-color);
+    transform: scale(1.05);
 }
 
 .rm-feature-icon svg {
